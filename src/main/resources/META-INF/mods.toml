@@ -1,0 +1,28 @@
+modLoader="javafml" #mandatory
+loaderVersion="[37,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license="MIT"
+#issueTrackerURL="http://my.issue.tracker/" #optional
+[[mods]] #mandatory
+modId="trickortreat" #mandatory
+version="1.0.0" #mandatory
+displayName="Trick or Treat" #mandatory
+#updateJSONURL="http://myurl.me/" #optional
+#displayURL="http://example.com/" #optional
+logoFile="trickortreat.png" #optional
+#credits="Thanks for this example mod goes to Java" #optional
+authors="SameButDifferent, EpicNecromancer, & Nicolas Cage" #optional
+description='''
+Spooky! Developed for the MMD SpookyJam 2021.
+'''
+[[dependencies.trickortreat]] #optional
+   modId="forge" #mandatory
+   mandatory=true #mandatory
+   versionRange="[37,)" #mandatory
+   ordering="NONE"
+   side="BOTH"
+[[dependencies.trickortreat]]
+   modId="minecraft"
+   mandatory=true
+   versionRange="[1.17.1,1.18)"
+   ordering="NONE"
+   side="BOTH"

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "trickortreat:item/guardian_goodie_bag"
+  }
+}
