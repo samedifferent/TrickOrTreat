@@ -20,7 +20,7 @@ public class ScaryEffect extends MobEffect {
     @SubscribeEvent
     static void onLivingSetAttackTarget(LivingSetAttackTargetEvent event) {
         if (event.getEntityLiving() instanceof Monster monster) {
-            monster.goalSelector.addGoal(3, new AvoidEntityGoal<>(monster, Player.class, (entity) -> entity.hasEffect(ModEffects.SCARY.get()), 10.0F, 1.0D, 1.2D, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test));
+            monster.goalSelector.addGoal(1, new AvoidEntityGoal<>(monster, Player.class, (entity) -> entity.hasEffect(ModEffects.SCARY.get()), 8.0F, 1.8D, 1.8D, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test));
         }
     }
 }
