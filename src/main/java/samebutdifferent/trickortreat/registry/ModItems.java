@@ -18,7 +18,7 @@ public class ModItems {
     public static final RegistryObject<CandyItem> FIZZLERS = ITEMS.register("fizzlers", CandyItem::new);
     public static final RegistryObject<CandyItem> DEADISH_FISH = ITEMS.register("deadish_fish", CandyItem::new);
     public static final RegistryObject<CandyItem> PEARL_POP = ITEMS.register("pearl_pop", CandyItem::new);
-    public static final RegistryObject<CandyItem> SCREAMBURSTS = ITEMS.register("screambursts", CandyItem::new);
+    public static final RegistryObject<Item> SCREAMBURSTS = ITEMS.register("screambursts", () -> new Item(new Item.Properties().stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.SCARY.get(), 500), 1).build())));
     public static final RegistryObject<CandyItem> EYECE_CREAM = ITEMS.register("eyece_cream", CandyItem::new);
     public static final RegistryObject<CandyItem> MEMBRANE_BUTTER_CUPS = ITEMS.register("membrane_butter_cups", CandyItem::new);
     public static final RegistryObject<CandyItem> BONEBREAKER = ITEMS.register("bonebreaker", CandyItem::new);
