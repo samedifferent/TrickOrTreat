@@ -5,10 +5,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import samebutdifferent.trickortreat.registry.ModConfig;
+import samebutdifferent.trickortreat.registry.ModEffects;
 import samebutdifferent.trickortreat.registry.ModItems;
 
 import java.time.LocalDate;
@@ -29,6 +32,9 @@ public class TrickOrTreat {
     public TrickOrTreat() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, ModConfig.COMMON_CONFIG);
+
+        ModEffects.MOB_EFFECTS.register(bus);
         ModItems.ITEMS.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);

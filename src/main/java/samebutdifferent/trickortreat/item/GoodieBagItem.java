@@ -14,6 +14,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import samebutdifferent.trickortreat.TrickOrTreat;
+import samebutdifferent.trickortreat.registry.ModConfig;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -39,7 +40,7 @@ public class GoodieBagItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         UUID uuid = player.getUUID();
-        if (!stack.getTag().getUUID("Owner").equals(uuid)) {
+        if (!stack.getTag().getUUID("Owner").equals(uuid) || !ModConfig.GOODIE_BAG_TRADING.get()) {
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }

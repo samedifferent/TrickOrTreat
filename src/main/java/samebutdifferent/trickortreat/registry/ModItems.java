@@ -1,5 +1,7 @@
 package samebutdifferent.trickortreat.registry;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -12,7 +14,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TrickOrTreat.MOD_ID);
 
     // CANDIES
-    public static final RegistryObject<CandyItem> FIREFINGERS = ITEMS.register("firefingers", CandyItem::new);
+    public static final RegistryObject<Item> FIREFINGERS = ITEMS.register("firefingers", () -> new Item(new Item.Properties().stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.FIREFINGER.get(), 300), 1).build())));
     public static final RegistryObject<CandyItem> FIZZLERS = ITEMS.register("fizzlers", CandyItem::new);
     public static final RegistryObject<CandyItem> DEADISH_FISH = ITEMS.register("deadish_fish", CandyItem::new);
     public static final RegistryObject<CandyItem> PEARL_POP = ITEMS.register("pearl_pop", CandyItem::new);

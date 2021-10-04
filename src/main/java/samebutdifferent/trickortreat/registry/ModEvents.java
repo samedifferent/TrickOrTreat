@@ -5,7 +5,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -15,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -35,8 +33,8 @@ public class ModEvents {
             Player player = (Player) event.getEntityLiving();
             Level level = player.level;
             if (stack.is(ModItems.FIZZLERS.get())) {
-                level.explode(player, player.getX(), player.getY(), player.getZ(), 3.0F, Explosion.BlockInteraction.BREAK);
-                player.getCooldowns().addCooldown(stack.getItem(), 80);
+                level.explode(player, player.getX(), player.getY(), player.getZ(), 0F, Explosion.BlockInteraction.BREAK);
+                player.getCooldowns().addCooldown(stack.getItem(), 100);
             }
             if (stack.is(ModItems.PEARL_POP.get())) {
                 player.getCooldowns().addCooldown(stack.getItem(), 100);
@@ -52,7 +50,7 @@ public class ModEvents {
         }
     }
 
-    // Thank you to Tslat for this method
+    // Thank you to Tslat for letting me use this method
     public static BlockPos getBlockAimingAt(Player player, double distance) {
         Vec3 startVec = new Vec3(player.getX(), player.getY() + (double)player.getEyeHeight(), player.getZ());
         float cosYaw = Mth.cos(-player.getYRot() * 0.017453292F - (float)Math.PI);
@@ -63,10 +61,6 @@ public class ModEvents {
         float angleZ = cosYaw * cosPitch;
         Vec3 endVec = startVec.add((double)angleX * distance, (double)sinPitch * distance, (double)angleZ * distance);
         BlockHitResult ray = player.level.clip(new ClipContext(startVec, endVec, ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, null));
-
-/*        if (ray.getType() != BlockHitResult.Type.BLOCK)
-            return null;*/
-
         return ray.getBlockPos();
     }
 
@@ -74,8 +68,8 @@ public class ModEvents {
     static void onHit(AttackEntityEvent event) {
         Player player = event.getPlayer();
         Entity target = event.getTarget();
-        if (player.hasEffect(MobEffects.MOVEMENT_SPEED)) {
-            target.setSecondsOnFire(3);
+        if (player.hasEffect(ModEffects.FIREFINGER.get())) {
+            target.setSecondsOnFire(4);
         }
     }
 
@@ -83,9 +77,9 @@ public class ModEvents {
     static void onMobDrops(LivingDropsEvent event) {
         LivingEntity entity = event.getEntityLiving();
         Level level = entity.level;
-        if (TrickOrTreat.isHalloween()) {
+        if (TrickOrTreat.isHalloween() || !ModConfig.ONLY_HALLOWEEN.get()) {
             if (!event.getSource().isFall() && !event.getSource().isFire() && !event.getSource().isMagic() && !event.getSource().isExplosion()) {
-                if (level.random.nextFloat() > 0.9F) {
+                if (level.random.nextFloat() < 0.1F * ModConfig.GOODIE_BAG_DROP_CHANCE.get().floatValue()) {
                     if (entity instanceof Blaze)
                         event.getDrops().add(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(ModItems.BLAZE_GOODIE_BAG.get())));
                     if (entity instanceof Creeper)

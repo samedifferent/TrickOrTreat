@@ -7,11 +7,6 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 @Mod.EventBusSubscriber
 public class ModConfig {
-    // enable/disable halloween check
-    // multiply goodie bag drop chance
-    // enable/disable certain goodie bags
-    // enable/disable UUID lock mechanic
-
     public static ForgeConfigSpec COMMON_CONFIG;
 
     public static final ForgeConfigSpec.BooleanValue ONLY_HALLOWEEN;
@@ -25,8 +20,8 @@ public class ModConfig {
                 .define("onlyHalloween", true);
         GOODIE_BAG_TRADING = COMMON_BUILDER.comment("Should goodie bags need to be opened by another player?")
                 .define("goodieBagTrading", true);
-        GOODIE_BAG_DROP_CHANCE = COMMON_BUILDER.comment("Multiply the chance that azalea trees generate")
-                .defineInRange("goodieBagDropChance", 1.0, 0.1, 50.0);
+        GOODIE_BAG_DROP_CHANCE = COMMON_BUILDER.comment("Multiply the chance that goodie bags drop")
+                .defineInRange("goodieBagDropChance", 1.0, 0.1, 10.0);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
