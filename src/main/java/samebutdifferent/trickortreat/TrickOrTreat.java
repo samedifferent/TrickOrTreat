@@ -11,6 +11,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import samebutdifferent.trickortreat.registry.ModItems;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
+
 @Mod(TrickOrTreat.MOD_ID)
 public class TrickOrTreat {
 
@@ -31,5 +34,10 @@ public class TrickOrTreat {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-
+    public static boolean isHalloween() {
+        LocalDate localdate = LocalDate.now();
+        int day = localdate.get(ChronoField.DAY_OF_MONTH);
+        int month = localdate.get(ChronoField.MONTH_OF_YEAR);
+        return month == 10 && day >= 1 || month == 11 && day <= 1;
+    }
 }

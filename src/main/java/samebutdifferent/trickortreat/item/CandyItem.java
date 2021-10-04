@@ -12,6 +12,6 @@ public class CandyItem extends Item {
     }
 
     public CandyItem(MobEffect effect, int duration) {
-        super(new Item.Properties().tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(effect, duration), 1).build()));
+        super(new Item.Properties().stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(effect, duration), 1).build()));
     }
 }

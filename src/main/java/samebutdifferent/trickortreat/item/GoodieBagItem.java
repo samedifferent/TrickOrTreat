@@ -3,6 +3,7 @@ package samebutdifferent.trickortreat.item;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -38,9 +39,12 @@ public class GoodieBagItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         UUID uuid = player.getUUID();
-        if (stack.getTag().getUUID("Owner").equals(uuid) && !player.getAbilities().instabuild) {
-            stack.shrink(1);
+        if (!stack.getTag().getUUID("Owner").equals(uuid)) {
+            if (!player.getAbilities().instabuild) {
+                stack.shrink(1);
+            }
             player.addItem(new ItemStack(contents));
+            player.playSound(SoundEvents.AZALEA_PLACE, 1.0F, 1.0F);
             return InteractionResultHolder.consume(stack);
         } else {
             return InteractionResultHolder.fail(stack);
