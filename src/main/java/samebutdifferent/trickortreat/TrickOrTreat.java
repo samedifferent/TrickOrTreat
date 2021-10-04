@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import samebutdifferent.trickortreat.registry.ModConfig;
 import samebutdifferent.trickortreat.registry.ModEffects;
 import samebutdifferent.trickortreat.registry.ModItems;
+import samebutdifferent.trickortreat.registry.ModSoundEvents;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
@@ -36,6 +37,7 @@ public class TrickOrTreat {
 
         ModEffects.MOB_EFFECTS.register(bus);
         ModItems.ITEMS.register(bus);
+        ModSoundEvents.SOUND_EVENTS.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

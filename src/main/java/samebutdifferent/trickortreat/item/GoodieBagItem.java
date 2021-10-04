@@ -15,6 +15,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import samebutdifferent.trickortreat.TrickOrTreat;
 import samebutdifferent.trickortreat.registry.ModConfig;
+import samebutdifferent.trickortreat.registry.ModSoundEvents;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -45,7 +46,7 @@ public class GoodieBagItem extends Item {
                 stack.shrink(1);
             }
             player.addItem(new ItemStack(contents));
-            player.playSound(SoundEvents.AZALEA_PLACE, 1.0F, 1.0F);
+            player.playSound(ModSoundEvents.GOODIE_BAG_OPEN.get(), 1.0F, 1.0F);
             return InteractionResultHolder.consume(stack);
         } else {
             return InteractionResultHolder.fail(stack);
