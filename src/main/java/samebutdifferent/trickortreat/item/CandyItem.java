@@ -6,6 +6,6 @@ import samebutdifferent.trickortreat.TrickOrTreat;
 
 public class CandyItem extends Item {
     public CandyItem() {
-        super(new Item.Properties().stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().alwaysEat().build()));
+        super(new Item.Properties().stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().build()));
     }
 }
