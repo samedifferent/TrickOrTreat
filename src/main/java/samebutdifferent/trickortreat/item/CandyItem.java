@@ -45,7 +45,6 @@ public class CandyItem extends Item {
                 player.getCooldowns().addCooldown(stack.getItem(), 100);
                 BlockPos pos = getBlockAimingAt(player, 10);
                 player.teleportTo(pos.getX(), pos.getY() + 1, pos.getZ());
-                player.fallDistance = 0.0F;
                 for(int i = 0; i < 32; ++i) {
                     level.addParticle(ParticleTypes.PORTAL, player.getX(), player.getY() + level.random.nextDouble() * 2.0D, player.getZ(), level.random.nextGaussian(), 0.0D, level.random.nextGaussian());
                 }

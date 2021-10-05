@@ -1,7 +1,8 @@
 package samebutdifferent.trickortreat.effect;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,8 +19,14 @@ public class BouncyEffect extends MobEffect {
             Vec3 movement = entity.getDeltaMovement();
             entity.setDeltaMovement(movement.x, 1.5D, movement.z);
             entity.hasImpulse = true;
-            entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.SLIME_JUMP, SoundSource.PLAYERS, 1.0F, 1.0F);
             entity.playSound(SoundEvents.SLIME_JUMP, 1.0F, 1.0F);
+            for(int j = 0; j < 8; ++j) {
+                float f = entity.level.random.nextFloat() * ((float)Math.PI * 2F);
+                float f1 = entity.level.random.nextFloat() * 0.5F + 0.5F;
+                float f2 = Mth.sin(f) * 0.5F * f1;
+                float f3 = Mth.cos(f) * 0.5F * f1;
+                entity.level.addParticle(ParticleTypes.ITEM_SLIME, entity.getX() + (double)f2, entity.getY(), entity.getZ() + (double)f3, 0.0D, 0.0D, 0.0D);
+            }
         }
         entity.fallDistance = 0.0F;
     }

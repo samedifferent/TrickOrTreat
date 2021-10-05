@@ -1,8 +1,6 @@
 package samebutdifferent.trickortreat.effect;
 
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.EntityDamageSource;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.player.Player;
@@ -20,14 +18,11 @@ public class LifeLeechEffect extends MobEffect {
 
     @SubscribeEvent
     static void onDamage(LivingDamageEvent event) {
-        DamageSource source = event.getSource();
-        if (event.getEntityLiving() instanceof Player player && player.hasEffect(ModEffects.LIFE_LEECH.get())) {
-            if (source instanceof EntityDamageSource && !(source instanceof IndirectEntityDamageSource) && !((EntityDamageSource) source).isThorns()) {
-                float damageAmount = Math.min(event.getAmount(), player.getHealth());
-                float healthStealAmount = Math.min(6, damageAmount / 4);
-                if (healthStealAmount >= 1) {
-                    player.heal(healthStealAmount);
-                }
+        if (event.getSource().getEntity() instanceof Player player && player.hasEffect(ModEffects.LIFE_LEECH.get())) {
+            float damageAmount = Math.min(event.getAmount(), player.getHealth());
+            float healthStealAmount = Math.min(6, damageAmount / 2);
+            if (healthStealAmount >= 1) {
+                player.heal(healthStealAmount);
             }
         }
     }
