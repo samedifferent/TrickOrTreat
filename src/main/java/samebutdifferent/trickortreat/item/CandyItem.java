@@ -1,7 +1,10 @@
 package samebutdifferent.trickortreat.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -11,6 +14,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -22,10 +27,22 @@ import net.minecraftforge.fml.common.Mod;
 import samebutdifferent.trickortreat.TrickOrTreat;
 import samebutdifferent.trickortreat.registry.ModItems;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 @Mod.EventBusSubscriber(modid = TrickOrTreat.MOD_ID)
 public class CandyItem extends Item {
+    public CandyItem(Properties properties) {
+        super(properties);
+    }
+
     public CandyItem() {
-        super(new Item.Properties().stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().build()));
+        super(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().build()));
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(new TranslatableComponent("item.trickortreat." + this.getRegistryName().getPath() + ".tooltip"));
     }
 
     @SubscribeEvent

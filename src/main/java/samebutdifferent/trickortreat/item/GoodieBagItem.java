@@ -55,6 +55,6 @@ public class GoodieBagItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(new TranslatableComponent("Give to a friend to open!"));
+        tooltip.add(new TranslatableComponent("item.trickortreat.goodie_bag.tooltip"));
     }
 }
