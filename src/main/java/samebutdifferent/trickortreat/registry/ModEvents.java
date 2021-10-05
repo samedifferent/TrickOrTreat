@@ -5,10 +5,8 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
@@ -21,7 +19,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import samebutdifferent.trickortreat.TrickOrTreat;
@@ -31,9 +28,8 @@ public class ModEvents {
 
     @SubscribeEvent
     static void onEat(LivingEntityUseItemEvent.Finish event) {
-        if (event.getEntityLiving() instanceof Player) {
+        if (event.getEntityLiving() instanceof Player player) {
             ItemStack stack = event.getItem();
-            Player player = (Player) event.getEntityLiving();
             Level level = player.level;
             if (stack.is(ModItems.FIZZLERS.get())) {
                 level.explode(player, player.getX(), player.getY(), player.getZ(), 6.0F, Explosion.BlockInteraction.NONE);

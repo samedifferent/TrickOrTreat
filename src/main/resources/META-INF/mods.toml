@@ -12,7 +12,7 @@ logoFile="trickortreat.png" #optional
 #credits="Thanks for this example mod goes to Java" #optional
 authors="SameButDifferent, EpicNecromancer, & Nicolas Cage" #optional
 description='''
-Spooky! Developed for the MMD SpookyJam 2021.
+Trade magical candies! Developed for the MMD SpookyJam 2021.
 '''
 [[dependencies.trickortreat]] #optional
    modId="forge" #mandatory
