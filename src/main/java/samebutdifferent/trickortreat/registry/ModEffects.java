@@ -5,6 +5,7 @@ import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import samebutdifferent.trickortreat.TrickOrTreat;
+import samebutdifferent.trickortreat.effect.BouncyEffect;
 import samebutdifferent.trickortreat.effect.FirefingerEffect;
 import samebutdifferent.trickortreat.effect.ScaryEffect;
 
@@ -13,5 +14,6 @@ public class ModEffects {
 
     public static final RegistryObject<MobEffect> FIREFINGER = MOB_EFFECTS.register("firefinger", FirefingerEffect::new);
     public static final RegistryObject<MobEffect> SCARY = MOB_EFFECTS.register("scary", ScaryEffect::new);
+    public static final RegistryObject<MobEffect> BOUNCY = MOB_EFFECTS.register("bouncy", BouncyEffect::new);
 
 }
