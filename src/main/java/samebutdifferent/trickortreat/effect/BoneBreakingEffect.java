@@ -26,8 +26,8 @@ public class BoneBreakingEffect extends MobEffect {
         Player player = event.getPlayer();
         Entity target = event.getTarget();
         if (player.hasEffect(ModEffects.BONE_BREAKING.get())) {
-            if (target instanceof LivingEntity entity && !entity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
-                entity.addEffect(new MobEffectInstance(ModEffects.IMMOBILIZED.get(), 60, 4));
+            if (target instanceof LivingEntity entity && !entity.hasEffect(ModEffects.PARALYZED.get())) {
+                entity.addEffect(new MobEffectInstance(ModEffects.PARALYZED.get(), 60, 4));
                 if (!(entity instanceof AbstractSkeleton)) {
                     player.playSound(SoundEvents.SKELETON_HURT, 1.0F, 1.0F);
                 }

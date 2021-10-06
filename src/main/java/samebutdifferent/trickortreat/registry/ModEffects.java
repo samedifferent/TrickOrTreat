@@ -15,6 +15,6 @@ public class ModEffects {
     public static final RegistryObject<MobEffect> BOUNCY = MOB_EFFECTS.register("bouncy", BouncyEffect::new);
     public static final RegistryObject<MobEffect> LIFE_LEECH = MOB_EFFECTS.register("life_leech", LifeLeechEffect::new);
     public static final RegistryObject<MobEffect> BONE_BREAKING = MOB_EFFECTS.register("bone_breaking", BoneBreakingEffect::new);
-    public static final RegistryObject<MobEffect> IMMOBILIZED = MOB_EFFECTS.register("immobilized", ImmobilizedEffect::new);
+    public static final RegistryObject<MobEffect> PARALYZED = MOB_EFFECTS.register("paralyzed", ParalyzedEffect::new);
 
 }

@@ -5,15 +5,14 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 
-public class ImmobilizedEffect extends MobEffect {
-    public ImmobilizedEffect() {
+public class ParalyzedEffect extends MobEffect {
+    public ParalyzedEffect() {
         super(MobEffectCategory.HARMFUL, 16777038);
     }
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         entity.setDeltaMovement(Vec3.ZERO);
-        entity.setJumping(false);
     }
 
     @Override
