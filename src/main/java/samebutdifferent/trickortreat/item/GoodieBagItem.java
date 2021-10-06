@@ -41,16 +41,17 @@ public class GoodieBagItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         UUID uuid = player.getUUID();
-        if (!stack.getTag().getUUID("Owner").equals(uuid) || !ModConfig.GOODIE_BAG_TRADING.get()) {
-            if (!player.getAbilities().instabuild) {
-                stack.shrink(1);
+        if (!world.isClientSide) {
+            if (!stack.getTag().getUUID("Owner").equals(uuid) || !ModConfig.GOODIE_BAG_TRADING.get()) {
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+                player.addItem(new ItemStack(contents));
+                player.playSound(ModSoundEvents.GOODIE_BAG_OPEN.get(), 1.0F, 1.0F);
+                return InteractionResultHolder.consume(stack);
             }
-            player.addItem(new ItemStack(contents));
-            player.playSound(ModSoundEvents.GOODIE_BAG_OPEN.get(), 1.0F, 1.0F);
-            return InteractionResultHolder.consume(stack);
-        } else {
-            return InteractionResultHolder.fail(stack);
         }
+        return InteractionResultHolder.fail(stack);
     }
 
     @Override
