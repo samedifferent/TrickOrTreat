@@ -6,7 +6,7 @@ import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import samebutdifferent.trickortreat.TrickOrTreat;
@@ -19,10 +19,10 @@ public class ScaryEffect extends MobEffect {
     }
 
     @SubscribeEvent
-    static void onLivingSetAttackTarget(LivingSetAttackTargetEvent event) {
-        if (event.getEntityLiving() instanceof Monster monster) {
+    static void onLivingSetAttackTarget(EntityJoinWorldEvent event) {
+        if (event.getEntity() instanceof Monster monster) {
             AvoidEntityGoal<Player> goal = new AvoidEntityGoal<>(monster, Player.class, (entity) -> entity.hasEffect(ModEffects.SCARY.get()), 8.0F, 1.8D, 1.8D, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test);
-            monster.goalSelector.addGoal(3, goal);
+            monster.goalSelector.addGoal(1, goal);
         }
     }
 }
