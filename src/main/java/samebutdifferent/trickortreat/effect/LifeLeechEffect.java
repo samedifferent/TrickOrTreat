@@ -18,8 +18,8 @@ public class LifeLeechEffect extends MobEffect {
     @SubscribeEvent
     static void onDamage(LivingDamageEvent event) {
         if (event.getSource().getEntity() instanceof Player player && player.hasEffect(ModEffects.LIFE_LEECH.get())) {
-            float damageAmount = Math.min(event.getAmount(), player.getHealth());
-            float healthStealAmount = Math.min(6, damageAmount / 2);
+            float damageAmount = event.getAmount();
+            float healthStealAmount = Math.min(6, damageAmount / 4);
             if (healthStealAmount >= 1) {
                 player.heal(healthStealAmount);
             }

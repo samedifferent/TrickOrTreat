@@ -11,7 +11,6 @@ public class ModConfig {
     public static ForgeConfigSpec COMMON_CONFIG;
 
     public static final ForgeConfigSpec.BooleanValue ONLY_HALLOWEEN;
-    public static final ForgeConfigSpec.BooleanValue GOODIE_BAG_TRADING;
     public static final ForgeConfigSpec.DoubleValue GOODIE_BAG_DROP_CHANCE;
 
     static {
@@ -19,8 +18,6 @@ public class ModConfig {
 
         ONLY_HALLOWEEN = COMMON_BUILDER.comment("Should goodie bags only drop during Halloween month? (October 1 to November 1)")
                 .define("onlyHalloween", true);
-        GOODIE_BAG_TRADING = COMMON_BUILDER.comment("Should goodie bags need to be opened by another player?")
-                .define("goodieBagTrading", true);
         GOODIE_BAG_DROP_CHANCE = COMMON_BUILDER.comment("Multiply the chance that goodie bags drop")
                 .defineInRange("goodieBagDropChance", 1.0, 0.1, 10.0);
 
