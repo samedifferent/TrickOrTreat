@@ -38,4 +38,11 @@ public class ClimbingEffect extends MobEffect {
     public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
         return true;
     }
+
+
+    static void onFovModifier(EntityViewRenderEvent.CameraSetup event) {
+        if (event.getInfo().getEntity() instanceof LivingEntity entity && entity.hasEffect(ModEffects.CLIMBING.get())) {
+
+        }
+    }
 }
