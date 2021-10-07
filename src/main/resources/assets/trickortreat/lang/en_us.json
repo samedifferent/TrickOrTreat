@@ -3,7 +3,7 @@
   "item.trickortreat.blaze_goodie_bag": "Blaze Goodie Bag",
   "item.trickortreat.bonebreaker": "Bonebreaker",
   "item.trickortreat.bonebreaker.tooltip": "TOOLTIP",
-  "item.trickortreat.chocolate_spider_eye": "Chocolate Spider Eye",
+  "item.trickortreat.chocolate_spider_eye": "Chocolate Covered Spider Eye",
   "item.trickortreat.chocolate_spider_eye.tooltip": "TOOLTIP",
   "item.trickortreat.creeper_goodie_bag": "Creeper Goodie Bag",
   "item.trickortreat.deadish_fish": "Deadish Fish",
@@ -43,5 +43,6 @@
   "effect.trickortreat.bouncy": "Bouncy",
   "effect.trickortreat.life_leech": "Life Leech",
   "effect.trickortreat.bone_breaking": "Bone Breaking",
-  "effect.trickortreat.paralyzed": "Paralyzed"
+  "effect.trickortreat.paralyzed": "Paralyzed",
+  "effect.trickortreat.climbing": "Climbing"
 }
