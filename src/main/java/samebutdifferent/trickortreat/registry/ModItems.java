@@ -17,7 +17,7 @@ public class ModItems {
     // CANDIES
     public static final RegistryObject<CandyItem> FIREFINGERS = ITEMS.register("firefingers", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.FIREFINGER.get(), 300), 1).build())));
     public static final RegistryObject<CandyItem> FIZZLERS = ITEMS.register("fizzlers", CandyItem::new);
-    public static final RegistryObject<CandyItem> DEADISH_FISH = ITEMS.register("deadish_fish", CandyItem::new);
+    public static final RegistryObject<CandyItem> DEADISH_FISH = ITEMS.register("deadish_fish", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.WATERBOLT.get(), 300), 1).build())));
     public static final RegistryObject<CandyItem> PEARL_POP = ITEMS.register("pearl_pop", CandyItem::new);
     public static final RegistryObject<CandyItem> SCREAMBURSTS = ITEMS.register("screambursts", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.SCARY.get(), 200), 1).build())));
     public static final RegistryObject<CandyItem> EYECE_CREAM = ITEMS.register("eyece_cream", CandyItem::new);
