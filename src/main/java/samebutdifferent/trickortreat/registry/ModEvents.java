@@ -18,7 +18,7 @@ public class ModEvents {
         LivingEntity entity = event.getEntityLiving();
         Level level = entity.level;
         if (TrickOrTreat.isHalloween() || !ModConfig.ONLY_HALLOWEEN.get()) {
-            if (!event.getSource().isFall() && !event.getSource().isFire() && !event.getSource().isMagic() && !event.getSource().isExplosion()) {
+            if (!event.getSource().isFall() && !event.getSource().isFire() && !event.getSource().isMagic()) {
                 if (level.random.nextFloat() <= 0.2F * ModConfig.GOODIE_BAG_DROP_CHANCE.get().floatValue()) {
                     if (entity instanceof Blaze)
                         event.getDrops().add(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(ModItems.BLAZE_GOODIE_BAG.get())));
