@@ -19,7 +19,7 @@ public class ModConfig {
         ONLY_HALLOWEEN = COMMON_BUILDER.comment("Should goodie bags only drop during Halloween month? (October 1 to November 1)")
                 .define("onlyHalloween", true);
         GOODIE_BAG_DROP_CHANCE = COMMON_BUILDER.comment("Multiply the chance that goodie bags drop")
-                .defineInRange("goodieBagDropChance", 1.0, 0.1, 10.0);
+                .defineInRange("goodieBagDropChance", 1.0, 0.1, 4.0);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
