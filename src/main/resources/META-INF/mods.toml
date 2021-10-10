@@ -7,12 +7,12 @@ modId="trickortreat" #mandatory
 version="1.0.0" #mandatory
 displayName="Trick or Treat" #mandatory
 #updateJSONURL="http://myurl.me/" #optional
-#displayURL="http://example.com/" #optional
+displayURL="https://www.curseforge.com/minecraft/mc-mods/trick-or-treat" #optional
 logoFile="trickortreat.png" #optional
 #credits="Thanks for this example mod goes to Java" #optional
 authors="SameButDifferent, EpicNecromancer, & Nicolas Cage" #optional
 description='''
-Trade magical candies! Developed for the MMD SpookyJam 2021.
+Spooky Halloween candy with fun effects! Developed for the MMD SpookyJam 2021.
 '''
 [[dependencies.trickortreat]] #optional
    modId="forge" #mandatory
