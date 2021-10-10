@@ -1,11 +1,10 @@
 package samebutdifferent.trickortreat.item;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -69,6 +68,13 @@ public class CandyItem extends Item {
                 }
                 level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.PLAYERS, 1.0F, 1.0F);
                 player.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
+            }
+            if (stack.is(ModItems.EYECE_CREAM.get())) {
+                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 600, 1));
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 600, 0));
+                if (!level.isClientSide) {
+                    ((ServerPlayer)player).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.GUARDIAN_ELDER_EFFECT, 1.0F));
+                }
             }
         }
     }
