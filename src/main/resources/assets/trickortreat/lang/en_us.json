@@ -30,7 +30,7 @@
   "item.trickortreat.slime_gum": "Slime Gum",
   "item.trickortreat.slime_gum.tooltip": "Makes life a little bouncier!",
   "item.trickortreat.sour_patch_zombies": "Sour Patch Zombies",
-  "item.trickortreat.sour_patch_zombies.tooltip": "Spooky then sweet!",
+  "item.trickortreat.sour_patch_zombies.tooltip": "Infect villagers.",
   "item.trickortreat.spider_goodie_bag": "Spider Goodie Bag",
   "item.trickortreat.zombie_goodie_bag": "Zombie Goodie Bag",
 
@@ -45,6 +45,7 @@
   "effect.trickortreat.bone_breaking": "Bone Breaking",
   "effect.trickortreat.paralyzed": "Paralyzed",
   "effect.trickortreat.climbing": "Climbing",
-  "effect.trickortreat.waterbolt": "Waterbolt"
+  "effect.trickortreat.waterbolt": "Waterbolt",
+  "effect.trickortreat.rotten_bite": "Rotten Bite"
 
 }

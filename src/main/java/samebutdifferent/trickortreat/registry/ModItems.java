@@ -1,6 +1,7 @@
 package samebutdifferent.trickortreat.registry;
 
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -25,7 +26,7 @@ public class ModItems {
     public static final RegistryObject<CandyItem> BONEBREAKER = ITEMS.register("bonebreaker", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.BONE_BREAKING.get(), 300), 1).build())));
     public static final RegistryObject<CandyItem> SLIME_GUM = ITEMS.register("slime_gum", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.BOUNCY.get(), 300), 1).build())));
     public static final RegistryObject<CandyItem> CHOCOLATE_SPIDER_EYE = ITEMS.register("chocolate_spider_eye", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.CLIMBING.get(), 500), 1).build())));
-    public static final RegistryObject<CandyItem> SOUR_PATCH_ZOMBIES = ITEMS.register("sour_patch_zombies", CandyItem::new);
+    public static final RegistryObject<CandyItem> SOUR_PATCH_ZOMBIES = ITEMS.register("sour_patch_zombies", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.ROTTEN_BITE.get(), 300), 1).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600), 1).build())));
 
     // GOODIE BAGS
     public static final RegistryObject<GoodieBagItem> BLAZE_GOODIE_BAG = ITEMS.register("blaze_goodie_bag", () -> new GoodieBagItem(ModItems.FIREFINGERS.get()));

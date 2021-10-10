@@ -18,4 +18,5 @@ public class ModEffects {
     public static final RegistryObject<MobEffect> PARALYZED = MOB_EFFECTS.register("paralyzed", ParalyzedEffect::new);
     public static final RegistryObject<MobEffect> CLIMBING = MOB_EFFECTS.register("climbing", ClimbingEffect::new);
     public static final RegistryObject<MobEffect> WATERBOLT = MOB_EFFECTS.register("waterbolt", WaterboltEffect::new);
+    public static final RegistryObject<MobEffect> ROTTEN_BITE = MOB_EFFECTS.register("rotten_bite", RottenBiteEffect::new);
 }
