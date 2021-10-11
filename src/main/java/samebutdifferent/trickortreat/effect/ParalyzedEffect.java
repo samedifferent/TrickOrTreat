@@ -1,22 +1,18 @@
 package samebutdifferent.trickortreat.effect;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.Input;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import samebutdifferent.trickortreat.TrickOrTreat;
 import samebutdifferent.trickortreat.registry.ModEffects;
 
-@Mod.EventBusSubscriber(modid = TrickOrTreat.MOD_ID)
+@Mod.EventBusSubscriber(modid = TrickOrTreat.MOD_ID, value = Dist.CLIENT)
 public class ParalyzedEffect extends MobEffect {
     public ParalyzedEffect() {
         super(MobEffectCategory.HARMFUL, 16777038);
