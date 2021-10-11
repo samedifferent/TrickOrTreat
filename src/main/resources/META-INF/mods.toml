@@ -4,7 +4,7 @@ license="MIT"
 #issueTrackerURL="http://my.issue.tracker/" #optional
 [[mods]] #mandatory
 modId="trickortreat" #mandatory
-version="1.0.0" #mandatory
+version="1.0.1" #mandatory
 displayName="Trick or Treat" #mandatory
 #updateJSONURL="http://myurl.me/" #optional
 displayURL="https://www.curseforge.com/minecraft/mc-mods/trick-or-treat" #optional
