@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "trickortreat",
+  "version": "${version}",
+  "name": "Trick or Treat",
+  "description": "Spooky Halloween candy with fun effects! Developed for the MMD SpookyJam 2021.",
+  "authors": [
+    "Jamalam360 - Owner, Developer"
+  ],
+  "contributors": [],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/trick-or-treat",
+    "issues": "https://github.com/samedifferent/TrickOrTreat/issues",
+    "sources": "https://github.com/samedifferent/TrickOrTreat"
+  },
+  "license": "MIT",
+  "icon": "assets/trickortreat/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "samebutdifferent.trickortreat.TrickOrTreatModInit"
+    ],
+    "client": [],
+    "server": []
+  },
+  "mixins": [
+    "%id%.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*"
+  }
+}

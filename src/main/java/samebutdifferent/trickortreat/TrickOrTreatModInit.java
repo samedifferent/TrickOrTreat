@@ -1,5 +1,6 @@
 package samebutdifferent.trickortreat;
 
+import net.fabricmc.api.ModInitializer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -18,8 +19,7 @@ import samebutdifferent.trickortreat.registry.ModSoundEvents;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
-@Mod(TrickOrTreat.MOD_ID)
-public class TrickOrTreat {
+public class TrickOrTreatModInit implements ModInitializer {
 
     private static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "trickortreat";
