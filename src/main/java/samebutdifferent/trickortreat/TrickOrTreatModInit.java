@@ -5,8 +5,8 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import samebutdifferent.trickortreat.registry.ModEffects;
+import samebutdifferent.trickortreat.registry.ModItems;
 import samebutdifferent.trickortreat.registry.ModSoundEvents;
 import samebutdifferent.trickortreat.registry.RegistryClass;
 
@@ -15,7 +15,6 @@ import java.time.temporal.ChronoField;
 
 public class TrickOrTreatModInit implements ModInitializer {
 
-    private static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "trickortreat";
 
     public static final ItemGroup TAB = FabricItemGroupBuilder.build(
@@ -24,6 +23,8 @@ public class TrickOrTreatModInit implements ModInitializer {
     );
 
     private static final RegistryClass[] REGISTRIES = new RegistryClass[]{
+            new ModEffects(),
+            new ModItems(),
             new ModSoundEvents()
     };
 

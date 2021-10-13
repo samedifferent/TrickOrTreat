@@ -1,95 +1,93 @@
 package samebutdifferent.trickortreat.item;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import samebutdifferent.trickortreat.TrickOrTreat;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Rarity;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.RaycastContext;
+import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
+import org.jetbrains.annotations.Nullable;
+import samebutdifferent.trickortreat.TrickOrTreatModInit;
 import samebutdifferent.trickortreat.registry.ModItems;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = TrickOrTreat.MOD_ID)
 public class CandyItem extends Item {
-    public CandyItem(Properties properties) {
-        super(properties);
+    public CandyItem(Item.Settings settings) {
+        super(settings);
     }
 
     public CandyItem() {
-        super(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().build()));
+        super(new Item.Settings().rarity(Rarity.EPIC).maxCount(16).group(TrickOrTreatModInit.TAB).food(new FoodComponent.Builder().snack().alwaysEdible().build()));
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(new TranslatableComponent("item.trickortreat." + this.getRegistryName().getPath() + ".tooltip"));
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        tooltip.add(new TranslatableText(this.getTranslationKey() + ".tooltip"));
     }
 
-    @SubscribeEvent
-    static void onEat(LivingEntityUseItemEvent.Finish event) {
-        if (event.getEntityLiving() instanceof Player player) {
-            ItemStack stack = event.getItem();
-            Level level = player.level;
-            if (stack.is(ModItems.FIZZLERS.get())) {
-                level.explode(player, player.getX(), player.getY(), player.getZ(), 6.0F, Explosion.BlockInteraction.NONE);
-                player.getCooldowns().addCooldown(stack.getItem(), 100);
-                Vec3 movement = player.getDeltaMovement();
-                player.setDeltaMovement(movement.x, 2.0D, movement.z);
-                player.hasImpulse = true;
-                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 4, false, false, false));
+    @Override
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        if (user instanceof PlayerEntity player) {
+            if (stack.isOf(ModItems.FIZZLERS)) {
+                world.createExplosion(player, player.getX(), player.getY(), player.getZ(), 6.0F, Explosion.DestructionType.NONE);
+                player.getItemCooldownManager().set(stack.getItem(), 100);
+                Vec3d movement = player.getVelocity();
+                player.setVelocity(movement.x, 2.0D, movement.z);
+                player.velocityDirty = true;
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 4, false, false, false));
             }
-            if (stack.is(ModItems.PEARL_POP.get())) {
-                player.getCooldowns().addCooldown(stack.getItem(), 100);
+            if (stack.isOf(ModItems.PEARL_POP)) {
+                player.getItemCooldownManager().set(stack.getItem(), 100);
                 BlockPos pos = getBlockAimingAt(player, 10);
-                player.teleportTo(pos.getX(), pos.getY() + 1, pos.getZ());
-                for(int i = 0; i < 32; ++i) {
-                    level.addParticle(ParticleTypes.PORTAL, player.getX(), player.getY() + level.random.nextDouble() * 2.0D, player.getZ(), level.random.nextGaussian(), 0.0D, level.random.nextGaussian());
+                player.requestTeleport(pos.getX(), pos.getY() + 1, pos.getZ());
+                for (int i = 0; i < 32; ++i) {
+                    world.addParticle(ParticleTypes.PORTAL, player.getX(), player.getY() + world.random.nextDouble() * 2.0D, player.getZ(), world.random.nextGaussian(), 0.0D, world.random.nextGaussian());
                 }
-                level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.PLAYERS, 1.0F, 1.0F);
-                player.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
+                world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                player.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
             }
-            if (stack.is(ModItems.EYECE_CREAM.get())) {
-                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 600, 1));
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 600, 0));
-                if (!level.isClientSide) {
-                    ((ServerPlayer)player).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.GUARDIAN_ELDER_EFFECT, 1.0F));
+            if (stack.isOf(ModItems.EYECE_CREAM)) {
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 600, 1));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 600, 0));
+                if (!world.isClient) {
+                    ((ServerPlayerEntity) player).networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.ELDER_GUARDIAN_EFFECT, 1.0F));
                 }
             }
         }
+
+        return super.finishUsing(stack, world, user);
     }
 
-    // Thank you to Tslat for letting me use this method
-    public static BlockPos getBlockAimingAt(Player player, double distance) {
-        Vec3 startVec = new Vec3(player.getX(), player.getY() + (double)player.getEyeHeight(), player.getZ());
-        float cosYaw = Mth.cos(-player.getYRot() * 0.017453292F - (float)Math.PI);
-        float sinYaw = Mth.sin(-player.getYRot() * 0.017453292F - (float)Math.PI);
-        float cosPitch = -Mth.cos(-player.getXRot() * 0.017453292F);
-        float sinPitch = Mth.sin(-player.getXRot() * 0.017453292F);
+    // Thank you to Tslat for letting me use this method (ported to yarn mappings for fabric version)
+    @SuppressWarnings("ConstantConditions")
+    public static BlockPos getBlockAimingAt(PlayerEntity player, double distance) {
+        Vec3d startVec = new Vec3d(player.getX(), player.getY() + (double) player.getStandingEyeHeight(), player.getZ());
+        float cosYaw = MathHelper.cos(-player.getYaw() * 0.017453292F - (float) Math.PI);
+        float sinYaw = MathHelper.sin(-player.getYaw() * 0.017453292F - (float) Math.PI);
+        float cosPitch = -MathHelper.cos(-player.getPitch() * 0.017453292F);
+        float sinPitch = MathHelper.sin(-player.getPitch() * 0.017453292F);
         float angleX = sinYaw * cosPitch;
         float angleZ = cosYaw * cosPitch;
-        Vec3 endVec = startVec.add((double)angleX * distance, (double)sinPitch * distance, (double)angleZ * distance);
-        BlockHitResult ray = player.level.clip(new ClipContext(startVec, endVec, ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, null));
+        Vec3d endVec = startVec.add((double) angleX * distance, (double) sinPitch * distance, (double) angleZ * distance);
+        BlockHitResult ray = player.world.raycast(new RaycastContext(startVec, endVec, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, null));
         return ray.getBlockPos();
     }
 }

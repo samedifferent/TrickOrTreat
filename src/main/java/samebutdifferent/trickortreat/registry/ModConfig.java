@@ -8,6 +8,8 @@ import samebutdifferent.trickortreat.TrickOrTreat;
 
 @Mod.EventBusSubscriber(modid = TrickOrTreat.MOD_ID)
 public class ModConfig {
+    //TODO: Port Config to Auto/Cloth Config
+
     public static ForgeConfigSpec COMMON_CONFIG;
 
     public static final ForgeConfigSpec.BooleanValue ONLY_HALLOWEEN;
