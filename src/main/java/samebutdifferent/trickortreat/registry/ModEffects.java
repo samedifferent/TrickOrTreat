@@ -1,22 +1,31 @@
 package samebutdifferent.trickortreat.registry;
 
-import net.minecraft.world.effect.MobEffect;
-import net.minecraftforge.fmllegacy.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import samebutdifferent.trickortreat.TrickOrTreat;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.util.registry.Registry;
 import samebutdifferent.trickortreat.effect.*;
 
-public class ModEffects {
-    public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, TrickOrTreat.MOD_ID);
+@SuppressWarnings("SpellCheckingInspection")
+public class ModEffects implements RegistryClass {
+    public static final StatusEffect FIREFINGER = FirefingerEffect::new;
+    public static final StatusEffect SCARY = ScaryEffect::new;
+    public static final StatusEffect BOUNCY = BouncyEffect::new;
+    public static final StatusEffect LIFE_LEECH = LifeLeechEffect::new;
+    public static final StatusEffect BONE_BREAKING = BoneBreakingEffect::new;
+    public static final StatusEffect PARALYZED = ParalyzedEffect::new;
+    public static final StatusEffect CLIMBING = ClimbingEffect::new;
+    public static final StatusEffect WATERBOLT = WaterboltEffect::new;
+    public static final StatusEffect ROTTEN_BITE = RottenBiteEffect::new;
 
-    public static final RegistryObject<MobEffect> FIREFINGER = MOB_EFFECTS.register("firefinger", FirefingerEffect::new);
-    public static final RegistryObject<MobEffect> SCARY = MOB_EFFECTS.register("scary", ScaryEffect::new);
-    public static final RegistryObject<MobEffect> BOUNCY = MOB_EFFECTS.register("bouncy", BouncyEffect::new);
-    public static final RegistryObject<MobEffect> LIFE_LEECH = MOB_EFFECTS.register("life_leech", LifeLeechEffect::new);
-    public static final RegistryObject<MobEffect> BONE_BREAKING = MOB_EFFECTS.register("bone_breaking", BoneBreakingEffect::new);
-    public static final RegistryObject<MobEffect> PARALYZED = MOB_EFFECTS.register("paralyzed", ParalyzedEffect::new);
-    public static final RegistryObject<MobEffect> CLIMBING = MOB_EFFECTS.register("climbing", ClimbingEffect::new);
-    public static final RegistryObject<MobEffect> WATERBOLT = MOB_EFFECTS.register("waterbolt", WaterboltEffect::new);
-    public static final RegistryObject<MobEffect> ROTTEN_BITE = MOB_EFFECTS.register("rotten_bite", RottenBiteEffect::new);
+    @Override
+    public void register(String modId) {
+        Registry.register(Registry.STATUS_EFFECT, idOf(""), FIREFINGER);
+        Registry.register(Registry.STATUS_EFFECT, idOf(""), SCARY);
+        Registry.register(Registry.STATUS_EFFECT, idOf(""), BOUNCY);
+        Registry.register(Registry.STATUS_EFFECT, idOf(""), LIFE_LEECH);
+        Registry.register(Registry.STATUS_EFFECT, idOf(""), BONE_BREAKING);
+        Registry.register(Registry.STATUS_EFFECT, idOf(""), PARALYZED);
+        Registry.register(Registry.STATUS_EFFECT, idOf(""), CLIMBING);
+        Registry.register(Registry.STATUS_EFFECT, idOf(""), WATERBOLT);
+        Registry.register(Registry.STATUS_EFFECT, idOf(""), ROTTEN_BITE);
+    }
 }

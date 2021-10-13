@@ -1,14 +1,15 @@
 package samebutdifferent.trickortreat.registry;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraftforge.fmllegacy.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import samebutdifferent.trickortreat.TrickOrTreat;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import samebutdifferent.trickortreat.TrickOrTreatModInit;
 
-public class ModSoundEvents {
-    public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, TrickOrTreat.MOD_ID);
+public class ModSoundEvents implements RegistryClass {
+    public static final SoundEvent GOODIE_BAG_OPEN = new SoundEvent(new Identifier(TrickOrTreatModInit.MOD_ID, "item.goodie_bag.open"));
 
-    public static final RegistryObject<SoundEvent> GOODIE_BAG_OPEN = SOUND_EVENTS.register("goodie_bag_open", () -> new SoundEvent(new ResourceLocation(TrickOrTreat.MOD_ID, "item.goodie_bag.open")));
+    @Override
+    public void register(String modId) {
+        Registry.register(Registry.SOUND_EVENT, new Identifier(modId, "goodie_bag_open"), GOODIE_BAG_OPEN);
+    }
 }

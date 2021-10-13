@@ -1,19 +1,9 @@
 package samebutdifferent.trickortreat.registry;
 
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.*;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import samebutdifferent.trickortreat.TrickOrTreat;
-
-@Mod.EventBusSubscriber(modid = TrickOrTreat.MOD_ID)
 public class ModEvents {
+    //TODO: Port this to a mixin!
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     static void onMobDrops(LivingDropsEvent event) {
         LivingEntity entity = event.getEntityLiving();
         Level level = entity.level;
@@ -45,5 +35,5 @@ public class ModEvents {
                 }
             }
         }
-    }
+    }*/
 }

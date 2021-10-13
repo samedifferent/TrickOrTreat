@@ -1,20 +1,14 @@
 package samebutdifferent.trickortreat;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
+import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import samebutdifferent.trickortreat.registry.ModConfig;
-import samebutdifferent.trickortreat.registry.ModEffects;
-import samebutdifferent.trickortreat.registry.ModItems;
 import samebutdifferent.trickortreat.registry.ModSoundEvents;
+import samebutdifferent.trickortreat.registry.RegistryClass;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
@@ -23,23 +17,21 @@ public class TrickOrTreatModInit implements ModInitializer {
 
     private static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "trickortreat";
-    public static final CreativeModeTab TAB = new CreativeModeTab(TrickOrTreat.MOD_ID) {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(Items.JACK_O_LANTERN);
-        }
+
+    public static final ItemGroup TAB = FabricItemGroupBuilder.build(
+            new Identifier(MOD_ID, "trickortreat"),
+            Items.JACK_O_LANTERN::getDefaultStack
+    );
+
+    private static final RegistryClass[] REGISTRIES = new RegistryClass[]{
+            new ModSoundEvents()
     };
 
-    public TrickOrTreat() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, ModConfig.COMMON_CONFIG);
-
-        ModEffects.MOB_EFFECTS.register(bus);
-        ModItems.ITEMS.register(bus);
-        ModSoundEvents.SOUND_EVENTS.register(bus);
-
-        MinecraftForge.EVENT_BUS.register(this);
+    @Override
+    public void onInitialize() {
+        for (RegistryClass registry : REGISTRIES) {
+            registry.register(MOD_ID);
+        }
     }
 
     public static boolean isHalloween() {

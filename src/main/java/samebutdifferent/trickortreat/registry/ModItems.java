@@ -1,44 +1,50 @@
 package samebutdifferent.trickortreat.registry;
 
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
-import net.minecraftforge.fmllegacy.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import samebutdifferent.trickortreat.TrickOrTreat;
-import samebutdifferent.trickortreat.item.CandyItem;
-import samebutdifferent.trickortreat.item.GoodieBagItem;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
+import net.minecraft.util.Rarity;
+import samebutdifferent.trickortreat.TrickOrTreatModInit;
 
-public class ModItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TrickOrTreat.MOD_ID);
+@SuppressWarnings("SpellCheckingInspection")
+public class ModItems implements RegistryClass {
+    //region CANDIES
+    public static final CandyItem FIREFINGERS = new CandyItem(getBaseSettings().food(new FoodComponent.Builder().snack().alwaysEdible().statusEffect(new StatusEffectInstance(ModEffects.FIREFINGER, 300), 1).build()));
+    public static final CandyItem FIZZLERS = CandyItem::new;
+    public static final CandyItem DEADISH_FISH = new CandyItem(getBaseSettings().food(new FoodComponent.Builder().snack().alwaysEdible().statusEffect(new StatusEffectInstance(ModEffects.WATERBOLT, 200), 1).build()));
+    public static final CandyItem PEARL_POP = CandyItem::new;
+    public static final CandyItem SCREAMBURSTS = new CandyItem(getBaseSettings().food(new FoodComponent.Builder().snack().alwaysEdible().statusEffect(new StatusEffectInstance(ModEffects.SCARY, 200), 1).build()));
+    public static final CandyItem EYECE_CREAM = CandyItem::new;
+    public static final CandyItem MEMBRANE_BUTTER_CUPS = new CandyItem(getBaseSettings().food(new FoodComponent.Builder().snack().alwaysEdible().statusEffect(new StatusEffectInstance(ModEffects.LIFE_LEECH, 300), 1).build()));
+    public static final CandyItem BONEBREAKER = new CandyItem(getBaseSettings().food(new FoodComponent.Builder().snack().alwaysEdible().statusEffect(new StatusEffectInstance(ModEffects.BONE_BREAKING, 300), 1).build()));
+    public static final CandyItem SLIME_GUM = new CandyItem(getBaseSettings().food(new FoodComponent.Builder().snack().alwaysEdible().statusEffect(new StatusEffectInstance(ModEffects.BOUNCY, 300), 1).build()));
+    public static final CandyItem CHOCOLATE_SPIDER_EYE = new CandyItem(getBaseSettings().food(new FoodComponent.Builder().snack().alwaysEdible().statusEffect(new StatusEffectInstance(ModEffects.CLIMBING, 500), 1).build()));
+    public static final CandyItem SOUR_PATCH_ZOMBIES = new CandyItem(getBaseSettings().food(new FoodComponent.Builder().snack().alwaysEdible().statusEffect(new StatusEffectInstance(ModEffects.ROTTEN_BITE, 300), 1).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600), 1).build()));
+    //endregion
 
-    // CANDIES
-    public static final RegistryObject<CandyItem> FIREFINGERS = ITEMS.register("firefingers", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.FIREFINGER.get(), 300), 1).build())));
-    public static final RegistryObject<CandyItem> FIZZLERS = ITEMS.register("fizzlers", CandyItem::new);
-    public static final RegistryObject<CandyItem> DEADISH_FISH = ITEMS.register("deadish_fish", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.WATERBOLT.get(), 200), 1).build())));
-    public static final RegistryObject<CandyItem> PEARL_POP = ITEMS.register("pearl_pop", CandyItem::new);
-    public static final RegistryObject<CandyItem> SCREAMBURSTS = ITEMS.register("screambursts", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.SCARY.get(), 200), 1).build())));
-    public static final RegistryObject<CandyItem> EYECE_CREAM = ITEMS.register("eyece_cream", CandyItem::new);
-    public static final RegistryObject<CandyItem> MEMBRANE_BUTTER_CUPS = ITEMS.register("membrane_butter_cups", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.LIFE_LEECH.get(), 300), 1).build())));
-    public static final RegistryObject<CandyItem> BONEBREAKER = ITEMS.register("bonebreaker", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.BONE_BREAKING.get(), 300), 1).build())));
-    public static final RegistryObject<CandyItem> SLIME_GUM = ITEMS.register("slime_gum", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.BOUNCY.get(), 300), 1).build())));
-    public static final RegistryObject<CandyItem> CHOCOLATE_SPIDER_EYE = ITEMS.register("chocolate_spider_eye", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.CLIMBING.get(), 500), 1).build())));
-    public static final RegistryObject<CandyItem> SOUR_PATCH_ZOMBIES = ITEMS.register("sour_patch_zombies", () -> new CandyItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(16).tab(TrickOrTreat.TAB).food(new FoodProperties.Builder().fast().alwaysEat().effect(() -> new MobEffectInstance(ModEffects.ROTTEN_BITE.get(), 300), 1).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600), 1).build())));
+    //region GOODIE BAGS
+    public static final GoodieBagItem BLAZE_GOODIE_BAG = new GoodieBagItem(ModItems.FIREFINGERS.get()));
+    public static final GoodieBagItem CREEPER_GOODIE_BAG = new GoodieBagItem(ModItems.FIZZLERS.get()));
+    public static final GoodieBagItem DROWNED_GOODIE_BAG = new GoodieBagItem(ModItems.DEADISH_FISH.get()));
+    public static final GoodieBagItem ENDERMAN_GOODIE_BAG = new GoodieBagItem(ModItems.PEARL_POP.get()));
+    public static final GoodieBagItem GHAST_GOODIE_BAG = new GoodieBagItem(ModItems.SCREAMBURSTS.get()));
+    public static final GoodieBagItem GUARDIAN_GOODIE_BAG = new GoodieBagItem(ModItems.EYECE_CREAM.get()));
+    public static final GoodieBagItem PHANTOM_GOODIE_BAG = new GoodieBagItem(ModItems.MEMBRANE_BUTTER_CUPS.get()));
+    public static final GoodieBagItem SKELETON_GOODIE_BAG = new GoodieBagItem(ModItems.BONEBREAKER.get()));
+    public static final GoodieBagItem SLIME_GOODIE_BAG = new GoodieBagItem(ModItems.SLIME_GUM.get()));
+    public static final GoodieBagItem SPIDER_GOODIE_BAG = new GoodieBagItem(ModItems.CHOCOLATE_SPIDER_EYE.get()));
+    public static final GoodieBagItem ZOMBIE_GOODIE_BAG = new GoodieBagItem(ModItems.SOUR_PATCH_ZOMBIES.get()));
+    //endregion
 
-    // GOODIE BAGS
-    public static final RegistryObject<GoodieBagItem> BLAZE_GOODIE_BAG = ITEMS.register("blaze_goodie_bag", () -> new GoodieBagItem(ModItems.FIREFINGERS.get()));
-    public static final RegistryObject<GoodieBagItem> CREEPER_GOODIE_BAG = ITEMS.register("creeper_goodie_bag", () -> new GoodieBagItem(ModItems.FIZZLERS.get()));
-    public static final RegistryObject<GoodieBagItem> DROWNED_GOODIE_BAG = ITEMS.register("drowned_goodie_bag", () -> new GoodieBagItem(ModItems.DEADISH_FISH.get()));
-    public static final RegistryObject<GoodieBagItem> ENDERMAN_GOODIE_BAG = ITEMS.register("enderman_goodie_bag", () -> new GoodieBagItem(ModItems.PEARL_POP.get()));
-    public static final RegistryObject<GoodieBagItem> GHAST_GOODIE_BAG = ITEMS.register("ghast_goodie_bag", () -> new GoodieBagItem(ModItems.SCREAMBURSTS.get()));
-    public static final RegistryObject<GoodieBagItem> GUARDIAN_GOODIE_BAG = ITEMS.register("guardian_goodie_bag", () -> new GoodieBagItem(ModItems.EYECE_CREAM.get()));
-    public static final RegistryObject<GoodieBagItem> PHANTOM_GOODIE_BAG = ITEMS.register("phantom_goodie_bag", () -> new GoodieBagItem(ModItems.MEMBRANE_BUTTER_CUPS.get()));
-    public static final RegistryObject<GoodieBagItem> SKELETON_GOODIE_BAG = ITEMS.register("skeleton_goodie_bag", () -> new GoodieBagItem(ModItems.BONEBREAKER.get()));
-    public static final RegistryObject<GoodieBagItem> SLIME_GOODIE_BAG = ITEMS.register("slime_goodie_bag", () -> new GoodieBagItem(ModItems.SLIME_GUM.get()));
-    public static final RegistryObject<GoodieBagItem> SPIDER_GOODIE_BAG = ITEMS.register("spider_goodie_bag", () -> new GoodieBagItem(ModItems.CHOCOLATE_SPIDER_EYE.get()));
-    public static final RegistryObject<GoodieBagItem> ZOMBIE_GOODIE_BAG = ITEMS.register("zombie_goodie_bag", () -> new GoodieBagItem(ModItems.SOUR_PATCH_ZOMBIES.get()));
 
+    @Override
+    public void register(String modId) {
+
+    }
+
+    private static FabricItemSettings getBaseSettings() {
+        return new FabricItemSettings().rarity(Rarity.EPIC).maxCount(16).tab(TrickOrTreatModInit.TAB);
+    }
 }
