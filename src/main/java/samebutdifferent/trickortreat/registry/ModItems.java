@@ -4,12 +4,16 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.registry.Registry;
 import samebutdifferent.trickortreat.TrickOrTreatModInit;
 import samebutdifferent.trickortreat.item.CandyItem;
 import samebutdifferent.trickortreat.item.GoodieBagItem;
 
-@SuppressWarnings("SpellCheckingInspection")
+import java.lang.reflect.Field;
+import java.util.Locale;
+
 public class ModItems implements RegistryClass {
     //region CANDIES
     public static final CandyItem FIREFINGERS = new CandyItem(getBaseSettings().food(new FoodComponent.Builder().snack().alwaysEdible().statusEffect(new StatusEffectInstance(ModEffects.FIREFINGER, 300), 1).build()));
@@ -42,7 +46,16 @@ public class ModItems implements RegistryClass {
 
     @Override
     public void register(String modId) {
+        // I really could not be bothered individually typing in registry calls, so I'm doing some cursed reflection stuff here to register all instances of Item defined in this class; please ignore
 
+        try {
+            for (Field field : ModItems.class.getDeclaredFields()) {
+                if (field.getType().isAssignableFrom(CandyItem.class) || field.getType().isAssignableFrom(GoodieBagItem.class)) { // isAssignableFrom doesn't check inheritance for some reason
+                    Registry.register(Registry.ITEM, idOf(field.getName().toLowerCase(Locale.ROOT)), ((Item) field.get(null)));
+                }
+            }
+        } catch (IllegalAccessException ignored) {
+        }
     }
 
     private static FabricItemSettings getBaseSettings() {
