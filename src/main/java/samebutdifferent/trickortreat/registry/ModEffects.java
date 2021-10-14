@@ -17,14 +17,14 @@ public class ModEffects implements RegistryClass {
 
     @Override
     public void register(String modId) {
-        Registry.register(Registry.STATUS_EFFECT, idOf(""), FIREFINGER);
-        Registry.register(Registry.STATUS_EFFECT, idOf(""), SCARY);
-        Registry.register(Registry.STATUS_EFFECT, idOf(""), BOUNCY);
-        Registry.register(Registry.STATUS_EFFECT, idOf(""), LIFE_LEECH);
-        Registry.register(Registry.STATUS_EFFECT, idOf(""), BONE_BREAKING);
-        Registry.register(Registry.STATUS_EFFECT, idOf(""), PARALYZED);
-        Registry.register(Registry.STATUS_EFFECT, idOf(""), CLIMBING);
-        Registry.register(Registry.STATUS_EFFECT, idOf(""), WATERBOLT);
-        Registry.register(Registry.STATUS_EFFECT, idOf(""), ROTTEN_BITE);
+        Registry.register(Registry.STATUS_EFFECT, idOf("firefinger"), FIREFINGER);
+        Registry.register(Registry.STATUS_EFFECT, idOf("scary"), SCARY);
+        Registry.register(Registry.STATUS_EFFECT, idOf("bouncy"), BOUNCY);
+        Registry.register(Registry.STATUS_EFFECT, idOf("life_leach"), LIFE_LEECH);
+        Registry.register(Registry.STATUS_EFFECT, idOf("bone_breaking"), BONE_BREAKING);
+        Registry.register(Registry.STATUS_EFFECT, idOf("paralyzed"), PARALYZED);
+        Registry.register(Registry.STATUS_EFFECT, idOf("climbing"), CLIMBING);
+        Registry.register(Registry.STATUS_EFFECT, idOf("waterbolt"), WATERBOLT);
+        Registry.register(Registry.STATUS_EFFECT, idOf("rotten_bite"), ROTTEN_BITE);
     }
 }
