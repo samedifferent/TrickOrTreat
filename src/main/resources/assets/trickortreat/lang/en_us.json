@@ -1,5 +1,5 @@
 {
-  "itemGroup.trickortreat": "Trick or Treat",
+  "itemGroup.trickortreat.trickortreat": "Trick or Treat",
   "item.trickortreat.blaze_goodie_bag": "Blaze Goodie Bag",
   "item.trickortreat.bonebreaker": "Bonebreaker",
   "item.trickortreat.bonebreaker.tooltip": "Paralyze your enemies.",
@@ -46,6 +46,12 @@
   "effect.trickortreat.paralyzed": "Paralyzed",
   "effect.trickortreat.climbing": "Climbing",
   "effect.trickortreat.waterbolt": "Waterbolt",
-  "effect.trickortreat.rotten_bite": "Rotten Bite"
+  "effect.trickortreat.rotten_bite": "Rotten Bite",
 
+  "text.autoconfig.trickortreat.option.onlyHalloween": "Only Halloween",
+  "text.autoconfig.trickortreat.option.onlyHalloween.@Tooltip[0]": "Should goodie bags only drop",
+  "text.autoconfig.trickortreat.option.onlyHalloween.@Tooltip[1]": "during Halloween month? (October 1 to November 1)",
+  "text.autoconfig.trickortreat.option.goodieBagDropChance": "Goodie Bag Drop Chance",
+  "text.autoconfig.trickortreat.option.goodieBagDropChance.@Tooltip[0]": "Multiply the chance",
+  "text.autoconfig.trickortreat.option.goodieBagDropChance.@Tooltip[1]": "that goodie bags drop"
 }
