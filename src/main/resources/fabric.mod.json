@@ -5,7 +5,8 @@
   "name": "Trick or Treat",
   "description": "Spooky Halloween candy with fun effects! Developed for the MMD SpookyJam 2021.",
   "authors": [
-    "Jamalam360 - Owner, Developer"
+    "samebutdifferent - original author",
+    "Jamalam360 - ported to fabric"
   ],
   "contributors": [],
   "contact": {
