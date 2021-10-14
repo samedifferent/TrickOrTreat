@@ -1,5 +1,7 @@
 package samebutdifferent.trickortreat;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
@@ -31,6 +33,8 @@ public class TrickOrTreatModInit implements ModInitializer {
         for (RegistryClass registry : REGISTRIES) {
             registry.register(MOD_ID);
         }
+
+        AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
     }
 
     public static boolean isHalloween() {

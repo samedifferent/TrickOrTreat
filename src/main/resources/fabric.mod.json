@@ -21,10 +21,13 @@
       "samebutdifferent.trickortreat.TrickOrTreatModInit"
     ],
     "client": [],
-    "server": []
+    "server": [],
+    "modmenu": [
+      "samebutdifferent.trickortreat.ModMenuIntegration"
+    ]
   },
   "mixins": [
-    "%id%.mixins.json"
+    "trickortreat.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.11.3",
