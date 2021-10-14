@@ -5,10 +5,7 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
-import samebutdifferent.trickortreat.registry.ModEffects;
-import samebutdifferent.trickortreat.registry.ModItems;
-import samebutdifferent.trickortreat.registry.ModSoundEvents;
-import samebutdifferent.trickortreat.registry.RegistryClass;
+import samebutdifferent.trickortreat.registry.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
@@ -24,6 +21,7 @@ public class TrickOrTreatModInit implements ModInitializer {
 
     private static final RegistryClass[] REGISTRIES = new RegistryClass[]{
             new ModEffects(),
+            new ModEvents(),
             new ModItems(),
             new ModSoundEvents()
     };

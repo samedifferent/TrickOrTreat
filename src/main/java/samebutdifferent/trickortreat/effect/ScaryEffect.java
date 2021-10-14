@@ -1,28 +1,10 @@
 package samebutdifferent.trickortreat.effect;
 
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import samebutdifferent.trickortreat.TrickOrTreat;
-import samebutdifferent.trickortreat.registry.ModEffects;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
 
-@Mod.EventBusSubscriber(modid = TrickOrTreat.MOD_ID)
-public class ScaryEffect extends MobEffect {
+public class ScaryEffect extends StatusEffect {
     public ScaryEffect() {
-        super(MobEffectCategory.BENEFICIAL, 35);
-    }
-
-    @SubscribeEvent
-    static void onLivingSetAttackTarget(EntityJoinWorldEvent event) {
-        if (event.getEntity() instanceof Monster monster) {
-            AvoidEntityGoal<Player> goal = new AvoidEntityGoal<>(monster, Player.class, (entity) -> entity.hasEffect(ModEffects.SCARY.get()), 8.0F, 1.8D, 1.8D, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test);
-            monster.goalSelector.addGoal(1, goal);
-        }
+        super(StatusEffectCategory.BENEFICIAL, 35);
     }
 }

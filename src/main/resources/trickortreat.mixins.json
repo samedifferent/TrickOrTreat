@@ -2,8 +2,13 @@
   "required": true,
   "package": "samebutdifferent.trickortreat.mixin",
   "compatibilityLevel": "JAVA_16",
-  "mixins": [],
-  "client": [],
+  "mixins": [
+    "LivingEntityMixin",
+    "MobEntityAccessor"
+  ],
+  "client": [
+    "ClientPlayerEntityMixin"
+  ],
   "server": [],
   "injectors": {
     "defaultRequire": 1

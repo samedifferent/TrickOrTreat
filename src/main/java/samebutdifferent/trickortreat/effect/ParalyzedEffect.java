@@ -1,45 +1,22 @@
 package samebutdifferent.trickortreat.effect;
 
-import net.minecraft.client.player.Input;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.InputUpdateEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import samebutdifferent.trickortreat.TrickOrTreat;
-import samebutdifferent.trickortreat.registry.ModEffects;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.util.math.Vec3d;
 
-@Mod.EventBusSubscriber(modid = TrickOrTreat.MOD_ID, value = Dist.CLIENT)
-public class ParalyzedEffect extends MobEffect {
+public class ParalyzedEffect extends StatusEffect {
     public ParalyzedEffect() {
-        super(MobEffectCategory.HARMFUL, 16777038);
+        super(StatusEffectCategory.HARMFUL, 16777038);
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
-        entity.setDeltaMovement(Vec3.ZERO);
+    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+        entity.setVelocity(Vec3d.ZERO);
     }
 
     @Override
-    public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
+    public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
-    }
-
-    @SubscribeEvent
-    public static void onInputUpdate(InputUpdateEvent event) {
-        Input input = event.getMovementInput();
-        if (event.getPlayer().hasEffect(ModEffects.PARALYZED.get())) {
-            input.up = false;
-            input.down = false;
-            input.left = false;
-            input.right = false;
-            input.forwardImpulse = 0;
-            input.leftImpulse = 0;
-            input.jumping = false;
-            input.shiftKeyDown = false;
-        }
     }
 }
