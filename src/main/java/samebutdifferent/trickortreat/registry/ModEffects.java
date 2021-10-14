@@ -20,7 +20,7 @@ public class ModEffects implements RegistryClass {
         Registry.register(Registry.STATUS_EFFECT, idOf("firefinger"), FIREFINGER);
         Registry.register(Registry.STATUS_EFFECT, idOf("scary"), SCARY);
         Registry.register(Registry.STATUS_EFFECT, idOf("bouncy"), BOUNCY);
-        Registry.register(Registry.STATUS_EFFECT, idOf("life_leach"), LIFE_LEECH);
+        Registry.register(Registry.STATUS_EFFECT, idOf("life_leech"), LIFE_LEECH);
         Registry.register(Registry.STATUS_EFFECT, idOf("bone_breaking"), BONE_BREAKING);
         Registry.register(Registry.STATUS_EFFECT, idOf("paralyzed"), PARALYZED);
         Registry.register(Registry.STATUS_EFFECT, idOf("climbing"), CLIMBING);
