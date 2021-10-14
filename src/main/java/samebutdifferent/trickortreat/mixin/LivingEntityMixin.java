@@ -33,7 +33,7 @@ public class LivingEntityMixin {
     )
     public void damageMixin(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         //region Life Leech
-        if (source.getSource() instanceof PlayerEntity player && player.hasStatusEffect(ModEffects.LIFE_LEECH)) {
+        if (source.getAttacker() instanceof PlayerEntity player && player.hasStatusEffect(ModEffects.LIFE_LEECH)) {
             float healthStealAmount = Math.min(6, amount / 4);
             if (healthStealAmount >= 1) {
                 player.playSound(SoundEvents.ENTITY_PHANTOM_AMBIENT, 1.0F, 1.0F);
@@ -53,7 +53,7 @@ public class LivingEntityMixin {
 
         if (TrickOrTreatModInit.isHalloween() || !config.onlyHalloween) {
             if (!source.isFromFalling() && !source.isFire() && !source.isMagic()) {
-                Entity entity = source.getSource();
+                Entity entity = ((LivingEntity) (Object) this);
 
                 if (entity.world.random.nextFloat() <= 0.25F * config.goodieBagDropChance) {
                     if (entity instanceof BlazeEntity) {

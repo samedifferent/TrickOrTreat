@@ -77,7 +77,6 @@ public class CandyItem extends Item {
     }
 
     // Thank you to Tslat for letting me use this method (ported to yarn mappings for fabric version)
-    @SuppressWarnings("ConstantConditions")
     public static BlockPos getBlockAimingAt(PlayerEntity player, double distance) {
         Vec3d startVec = new Vec3d(player.getX(), player.getY() + (double) player.getStandingEyeHeight(), player.getZ());
         float cosYaw = MathHelper.cos(-player.getYaw() * 0.017453292F - (float) Math.PI);
@@ -87,7 +86,7 @@ public class CandyItem extends Item {
         float angleX = sinYaw * cosPitch;
         float angleZ = cosYaw * cosPitch;
         Vec3d endVec = startVec.add((double) angleX * distance, (double) sinPitch * distance, (double) angleZ * distance);
-        BlockHitResult ray = player.world.raycast(new RaycastContext(startVec, endVec, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, null));
+        BlockHitResult ray = player.world.raycast(new RaycastContext(startVec, endVec, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, player));
         return ray.getBlockPos();
     }
 }
