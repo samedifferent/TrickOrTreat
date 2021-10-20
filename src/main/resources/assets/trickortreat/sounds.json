@@ -1,0 +1,8 @@
+{
+  "item.goodie_bag.open": {
+    "sounds": [
+      "trickortreat:goodie_bag_open"
+    ],
+    "subtitle": "trickortreat.subtitles.item.goodie_bag_open"
+  }
+}
