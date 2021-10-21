@@ -42,12 +42,15 @@ public class GoodieBagItem extends Item {
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getItemInHand(hand);
         UUID uuid = player.getUUID();
-        if (!player.abilities.instabuild) {
-            stack.shrink(1);
-        }
         if (!stack.getTag().getUUID("Owner").equals(uuid)) {
+            if (!player.abilities.instabuild) {
+                stack.shrink(1);
+            }
             player.addItem(new ItemStack(contents, 2));
         } else {
+            if (!player.abilities.instabuild) {
+                stack.shrink(1);
+            }
             player.addItem(new ItemStack(contents, 1));
         }
         player.playSound(ModSoundEvents.GOODIE_BAG_OPEN.get(), 1.0F, 1.0F);
