@@ -24,7 +24,7 @@ public class LifeLeechEffect extends Effect {
                 float damageAmount = event.getAmount();
                 float healthStealAmount = Math.min(6, damageAmount / 4);
                 if (healthStealAmount >= 1) {
-                    player.playSound(SoundEvents.PHANTOM_AMBIENT, 1.0F, 1.0F);
+                    event.getEntityLiving().playSound(SoundEvents.PHANTOM_BITE, 1.0F, 1.0F);
                     player.heal(healthStealAmount);
                 }
             }
