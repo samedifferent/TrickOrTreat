@@ -12,6 +12,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import samebutdifferent.trickortreat.TrickOrTreat;
 import samebutdifferent.trickortreat.registry.ModSoundEvents;
 
@@ -53,6 +55,7 @@ public class GoodieBagItem extends Item {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         tooltip.add(new TranslationTextComponent("item.trickortreat.goodie_bag.tooltip"));
     }
