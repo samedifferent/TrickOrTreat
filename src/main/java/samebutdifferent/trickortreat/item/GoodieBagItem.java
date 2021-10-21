@@ -18,6 +18,7 @@ import samebutdifferent.trickortreat.registry.ModSoundEvents;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
+import java.util.Random;
 
 public class GoodieBagItem extends Item {
     Item contents;
@@ -39,12 +40,23 @@ public class GoodieBagItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         UUID uuid = player.getUUID();
-        if (!player.getAbilities().instabuild) {
-            stack.shrink(1);
-        }
+
         if (!stack.getTag().getUUID("Owner").equals(uuid)) {
-            player.addItem(new ItemStack(contents, 2));
+            if (!player.getAbilities().instabuild) {
+                stack.shrink(1);
+            }
+            Random rand = new Random();
+            float rand_Float = rand.nextFloat();
+            float randI = Math.min(Math.max((rand_Float + 0.7f), 1.0f), 2.0f);
+            int friendLoot = (int)(Math.round(randI));
+
+            player.addItem(new ItemStack(contents, 1+friendLoot));
+
         } else {
+
+            if (!player.getAbilities().instabuild) {
+                stack.shrink(1);
+            }
             player.addItem(new ItemStack(contents, 1));
         }
         player.playSound(ModSoundEvents.GOODIE_BAG_OPEN.get(), 1.0F, 1.0F);
