@@ -3,7 +3,6 @@ package samebutdifferent.trickortreat.mixin;
 import net.minecraft.entity.ai.goal.FleeEntityGoal;
 import net.minecraft.entity.ai.goal.GoalSelector;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Final;
@@ -29,7 +28,8 @@ public class MobEntityMixin {
             method = "<init>"
     )
     private void initMixin(CallbackInfo ci) {
-        if (this instanceof Monster) {
+        MobEntity theMobEntity = (MobEntity) (Object) this;
+        if (theMobEntity instanceof PathAwareEntity) {
             FleeEntityGoal<PlayerEntity> goal = new FleeEntityGoal<>(((PathAwareEntity) (Object) this), PlayerEntity.class, (livingEntity) -> livingEntity.hasStatusEffect(ModEffects.SCARY), 8.0F, 1.8D, 1.8D, (livingEntity -> true));
             goalSelector.add(1, goal);
         }
