@@ -28,8 +28,8 @@ public class MobEntityMixin {
             method = "<init>"
     )
     private void initMixin(CallbackInfo ci) {
-        MobEntity theMobEntity = (MobEntity) (Object) this;
-        if (theMobEntity instanceof PathAwareEntity) {
+        MobEntity mobEntity = (MobEntity) (Object) this;
+        if (mobEntity instanceof PathAwareEntity) {
             FleeEntityGoal<PlayerEntity> goal = new FleeEntityGoal<>(((PathAwareEntity) (Object) this), PlayerEntity.class, (livingEntity) -> livingEntity.hasStatusEffect(ModEffects.SCARY), 8.0F, 1.8D, 1.8D, (livingEntity -> true));
             goalSelector.add(1, goal);
         }

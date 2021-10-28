@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
 public class TrickOrTreatModInit implements ModInitializer {
-
     public static final String MOD_ID = "trickortreat";
 
     public static final ItemGroup TAB = FabricItemGroupBuilder.build(
