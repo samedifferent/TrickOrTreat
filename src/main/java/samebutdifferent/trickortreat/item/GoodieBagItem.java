@@ -6,6 +6,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -43,12 +44,14 @@ public class GoodieBagItem extends Item {
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
-            player.addItem(new ItemStack(contents, 2));
+            ItemEntity itemEntity = player.drop(new ItemStack(contents, 2), true, true);
+            itemEntity.setPickUpDelay(0);
         } else {
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
-            player.addItem(new ItemStack(contents, 1));
+            ItemEntity itemEntity = player.drop(new ItemStack(contents), true, true);
+            itemEntity.setPickUpDelay(0);
         }
         player.playSound(ModSoundEvents.GOODIE_BAG_OPEN.get(), 1.0F, 1.0F);
         return InteractionResultHolder.consume(stack);
