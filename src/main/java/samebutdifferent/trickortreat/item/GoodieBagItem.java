@@ -2,6 +2,7 @@ package samebutdifferent.trickortreat.item;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -46,12 +47,14 @@ public class GoodieBagItem extends Item {
             if (!player.abilities.instabuild) {
                 stack.shrink(1);
             }
-            player.addItem(new ItemStack(contents, 2));
+            ItemEntity itemEntity = player.drop(new ItemStack(contents, 2), true, true);
+            itemEntity.setPickUpDelay(0);
         } else {
             if (!player.abilities.instabuild) {
                 stack.shrink(1);
             }
-            player.addItem(new ItemStack(contents, 1));
+            ItemEntity itemEntity = player.drop(new ItemStack(contents), true, true);
+            itemEntity.setPickUpDelay(0);
         }
         player.playSound(ModSoundEvents.GOODIE_BAG_OPEN.get(), 1.0F, 1.0F);
         return ActionResult.consume(stack);
